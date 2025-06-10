@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETHICALMENTOR</title>
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #1A1A1A;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #3A86FF;
+            color: white;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #FFFFFF;
+            text-align: center;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #3498db;
+            border-radius: 2px;
+        }
+
+        /* Introduction Section */
+        #intro {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #1E1E1E;
+        }
+
+        #intro .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #3498db;
+            margin-bottom: 1.5rem;
+        }
+
+        #intro h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+
+        #intro p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #3498db;
+        }
+
+        /* Experience Section */
+        #experience {
+            background-color: #121212;
+        }
+
+        .experience-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: #252525;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .experience-card h3 {
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card .date {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-item {
+            background-color: #333333;
+            color: #0369a1;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        #skills {
+            background-color: #1E1E1E;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: #252525;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background-color: #333333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: #3498db;
+            border-radius: 5px;
+        }
+
+        /* Projects Section */
+        #projects {
+            background-color: #121212;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: #252525;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-links a {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-links .demo {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .project-links .code {
+            background-color: #f1f5f9;
+            color: #2c3e50;
+            border: 1px solid #ddd;
+        }
+
+        .project-links a:hover {
+            opacity: 0.9;
+        }
+
+        /* Contributions Section */
+        #contributions {
+            background-color: #1E1E1E;
+        }
+
+        .contributions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contribution-card {
+            background: #252525;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contribution-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contribution-card h3 {
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+
+        .contribution-card .date {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #121212;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #3498db;
+        }
+
+        .contact-form {
+            background: #1A1A1A;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #FFFFFF;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            color: #E0E0E0;
+            background-color: #333333;
+            border-color: #444;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-wrap: wrap;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+
+            section {
+                padding: 5rem 1rem 1rem;
+            }
+
+            #intro h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#intro">Home</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contributions">Contributions</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Introduction Section -->
+    <section id="intro">
+        <img src="GreyHatThamizha-Profile_Picture-KKKN-01-white.png" alt="Profile Image" class="profile-img">
+        <h1>GreyHatThamizha</h1>
+        <p>CYBER SECURITY RESEARCHER | EMBEDDED H/W & S/W DEVELOPER | SCIENCE GEEK | TECH NERD</p>
+        <p>With 4+ years of experience in Technology Industry & Teaching Academic, 
+           I'm specialized in conducting forum acceptable criminal & forensic investigation.
+           I build solutions for Tech Problems, create methodologies & tactics for complex problems,
+           I spend my research capability in the areas of Cyber Forensics, IoT & Networking, 
+           Cloud and Blockchain Systems & Embedded Systems Engineering.
+        </p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience & Expertise</h2>
+        <div class="experience-container">
+            <div class="experience-card">
+                <h3>Consultant & Field Expert</h3>
+                <p class="date">Entrepreneur</p>
+                <p>Forensic Tools Development, VAPT Tools Development, Embedded H/W & S/W Development</p>
+                <div class="tech-list">
+                    <span class="tech-item">Rust</span>
+                    <span class="tech-item">Go Lang</span>
+                    <span class="tech-item">Python</span>
+                    <span class="tech-item">HTML, Javascript</span>
+                </div>
+            </div>
+            <div class="experience-card">
+                <h3>Lecturer - TA</h3>
+                <p class="date">AJK CAS | Nov 2021 - Apl 2025</p>
+                <p>Responsible for handling practicals & Digital Forensics Lab Maintenance</p>
+                <div class="tech-list">
+                    <span class="tech-item">Ethical Hacking</span>
+                    <span class="tech-item">BlockChain</span>
+                    <span class="tech-item">Cloud Computing</span>
+                    <span class="tech-item">Digital Forensics</span>
+                    <span class="tech-item">Sys.Admin & Networking</span>
+                </div>
+            </div>
+            <div class="experience-card">
+                <h3>In-Hand Expertise</h3>
+                <p class="date">Technologies & Tools</p>
+                <p>Extensive hands-on experience with modern Ethical Hacking and Digital Forensics Tools workflows.</p>
+                <div class="tech-list">
+                    <span class="tech-item">FTK, Oxygen, XRY</span>
+                    <span class="tech-item">Tableau TX1</span>
+                    <span class="tech-item">DJI Avata 2</span>
+                    <span class="tech-item">RHEL</span>
+                    <span class="tech-item">IDA-Pro</span>
+                    <span class="tech-item">Adobe Creative Suite</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skillset</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Digital Forensics</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>FTK, XRY, Oxygen</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>SPF-Pro, MobilEdit</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>React</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Vue.js</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Backend</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Node.js</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Express</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>MongoDB</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 65%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>REST APIs</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Tools & Others</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Git</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Figma</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Webpack</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Docker</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 60%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200" alt="Project 1" class="project-img">
+                <div class="project-info">
+                    <h3>E-commerce Platform</h3>
+                    <p>A full-featured e-commerce platform with product listings, cart functionality, and secure checkout built with React and Node.js.</p>
+                    <div class="project-links">
+                        <a href="#" class="demo">Live Demo</a>
+                        <a href="#" class="code">View Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200" alt="Project 2" class="project-img">
+                <div class="project-info">
+                    <h3>Task Management App</h3>
+                    <p>A productivity application for managing tasks with drag-and-drop functionality, built with Vue.js and Firebase.</p>
+                    <div class="project-links">
+                        <a href="#" class="demo">Live Demo</a>
+                        <a href="#" class="code">View Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200" alt="Project 3" class="project-img">
+                <div class="project-info">
+                    <h3>Weather Dashboard</h3>
+                    <p>Real-time weather application with 5-day forecast using OpenWeather API and vanilla JavaScript.</p>
+                    <div class="project-links">
+                        <a href="#" class="demo">Live Demo</a>
+                        <a href="#" class="code">View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contributions Section -->
+    <section id="contributions">
+        <h2>Contributions</h2>
+        <div class="contributions-container">
+            <div class="contribution-card">
+                <h3>Phishing Threat Report - CRDF LAB</h3>
+                <p class="date">React Community | 2022 - Present</p>
+                <p>Contributed to various open-source projects in the React ecosystem, including bug fixes and documentation improvements.</p>
+            </div>
+            <div class="contribution-card">
+                <h3>Phishing Server Blocking - CRDF LAB</h3>
+                <p class="date">Medium Publication | 2021 - Present</p>
+                <p>Regularly write technical articles about web development, sharing knowledge and best practices with the community.</p>
+            </div>
+            <div class="contribution-card">
+                <h3>Hackathon Participant</h3>
+                <p class="date">Various Events | 2019 - Present</p>
+                <p>Participated in multiple hackathons, winning awards for innovative solutions in web development and UX design.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p>ETHICALMENTOR101@GMAIL.COM</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+91 8300533771</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <div>
+                        <h3>Location</h3>
+                        <p>TamilNadu, India</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2021 ETHICALMENTOR. All rights reserved.</p>
+        <p>Designed and built by ETHICALMENTOR aka KISHORE KARTHIKEYAN</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send this data to a server
+            // For this example, we'll just log it and show an alert
+            console.log({ name, email, message });
+            
+            alert('Thank you for your message! I will get back to you soon.');
+            
+            // Reset the form
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 60, // Adjust for fixed header
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add active class to current section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animation for skill bars on scroll
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        }
+
+        // Intersection Observer for skill section
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkillBars();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            observer.observe(skillsSection);
+        }
+    </script>
+</body>
+</html>
